@@ -9,6 +9,10 @@ class TestTips(unittest.TestCase):
         self.check = tips.Check(config_tests.test_amount)
         self.percent = config_tests.test_percent
 
+    def test_bad_init(self):
+        with self.assertRaises(TypError):
+            check = tips.Check('bacon')
+
     def test_check_to_tip_rtype(self):
         self.assertIsInstance(self.check.check_to_tip(self.percent), tuple)
 

@@ -2,6 +2,8 @@
 class Check(object):
     def __init__(self, amount):
         '''Initialize a Check object, which holds the bill amount'''
+        if not isinstance(amount, int) or not isinstance(amount, float):
+            raise TypeError("amount must be either a float or int")
         self.amount = amount
 
     def check_to_tip(self, tip_percent):
