@@ -18,5 +18,5 @@ class Check(object):
         if total == f_total:
             return tip, total
         n_total = float(f_total + 1)
-        n_tip = tip + n_total - total
+        n_tip = round(tip + n_total - total, 2)
         return n_tip, n_total
