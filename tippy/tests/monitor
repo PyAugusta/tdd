@@ -1,14 +1,1 @@
-# options
-opt=$1
-case "$opt" in
-  "share" )
-    cmd="python ./test_share.py -v";;
-  "tips" )
-    cmd="python ./test_tips.py -v";;
-  "" )
-    cmd="python ./test_all.py -v";;
-  *)
-    echo "invalid option...choose 'share', 'tips', or nothing at all"
-    exit 1
-esac
-until ack -f --python | entr -d $cmd; do sleep 1; done
+until ack -f --python | entr -d python ./test_tips.py; do sleep 1; done
