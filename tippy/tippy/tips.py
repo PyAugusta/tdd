@@ -2,12 +2,25 @@
 class Check(object):
     def __init__(self, amount):
         '''Initialize a Check object, which holds the bill amount'''
-        if not isinstance(amount, int) or not isinstance(amount, float):
-            raise TypeError("amount must be either a float or int")
-        self.amount = amount
+        if isinstance(amount, int):
+            self._amount = round(float(amount), 2)
+        elif isinstance(amount, float):
+            self._amount = round(amount, 2)
+        else:
+            raise TypeError('amount must be either an integer or float')
+
+    @property
+    def amount(self):
+        return self._amount
+
+    @amount.setter
+    def amount(self, value):
+        self.__init__(value)
 
     def check_to_tip(self, tip_percent):
         '''Returns tuple with the tip amount and total bill after applying the tip'''
+        if not isinstance(tip_percent, int) and not isinstance(tip_percent, float):
+            raise TypeError('tip percent must be either an integer or float')
         tip = round(self.amount * tip_percent / 100, 2)
         total = self.amount + tip
         return tip, total
